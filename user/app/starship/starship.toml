@@ -1,0 +1,247 @@
+# prezto.toml
+add_newline = false
+
+# A minimal left prompt
+# format = """$python$directory$character"""
+format = """
+
+$os$username$hostname $directory $character
+
+"""
+# move the rest of the prompt to the right
+right_format = """$status$all"""
+
+[os]
+format = "$symbol"
+disabled = false
+
+
+[character]
+success_symbol = "[❯](red)[❯](yellow)[❯](green)"
+error_symbol = "[❯](red)[❯](yellow)[❯](green)"
+vicmd_symbol = "[❮](green)[❮](yellow)[❮](red)"
+
+[git_branch]
+# format = "[$branch]($style) "
+format = "[$symbol$branch(:$remote_branch)]($style)"
+symbol = " "
+style = "bold green"
+
+[python]
+format = "\\($virtualenv\\) "
+
+[git_status]
+format = "$all_status$ahead_behind "
+ahead = "[⬆](bold purple) "
+behind = "[⬇](bold purple) "
+staged = "[✚](green) "
+deleted = "[✖](red) "
+renamed = "[➜](purple) "
+stashed = "[✭](cyan) "
+untracked = "[◼](white) "
+modified = "[✱](blue) "
+conflicted = "[═](yellow) "
+diverged = "⇕ "
+up_to_date = ""
+
+[cmd_duration]
+format = "[$duration]($style) "
+
+[line_break]
+disabled = true
+
+[status]
+disabled = false
+symbol = "✘ "
+
+# format = """$all"""
+# right_format = "$git$python"
+
+[username]
+style_user = "blue bold"
+style_root = "black bold"
+format = "[$user]($style)"
+disabled = false
+show_always = true
+
+[hostname]
+ssh_only = true
+ssh_symbol="@"
+style = "bold green"
+format = "[$ssh_symbol$hostname]($style)"
+
+[directory]
+format = "[$path]($style)[$read_only]($read_only_style)"
+style = "yellow"
+truncation_length = 3
+truncate_to_repo = true
+truncation_symbol = ""
+# fish_style_pwd_dir_length = 1
+
+
+
+# [aws]
+# symbol = "  "
+
+# [buf]
+# symbol = " "
+
+# [c]
+# symbol = " "
+
+# [conda]
+# symbol = " "
+
+# [crystal]
+# symbol = " "
+
+# [dart]
+# symbol = " "
+
+# [directory]
+# read_only = " 󰌾"
+
+# [docker_context]
+# symbol = " "
+
+# [elixir]
+# symbol = " "
+
+# [elm]
+# symbol = " "
+
+# [fennel]
+# symbol = " "
+
+# [fossil_branch]
+# symbol = " "
+
+# [git_branch]
+# symbol = " "
+
+# [golang]
+# symbol = " "
+
+# [guix_shell]
+# symbol = " "
+
+# [haskell]
+# symbol = " "
+
+# [haxe]
+# symbol = " "
+
+# [hg_branch]
+# symbol = " "
+
+
+# [java]
+# symbol = " "
+
+# [julia]
+# symbol = " "
+
+# [kotlin]
+# symbol = " "
+
+# [lua]
+# symbol = " "
+
+# [memory_usage]
+# symbol = "󰍛 "
+
+# [meson]
+# symbol = "󰔷 "
+
+# [nim]
+# symbol = "󰆥 "
+
+[nix_shell]
+symbol = " "
+
+# [nodejs]
+# symbol = " "
+
+# [ocaml]
+# symbol = " "
+
+# [os.symbols]
+# Alpaquita = " "
+# Alpine = " "
+# AlmaLinux = " "
+# Amazon = " "
+# Android = " "
+# Arch = " "
+# Artix = " "
+# CentOS = " "
+# Debian = " "
+# DragonFly = " "
+# Emscripten = " "
+# EndeavourOS = " "
+# Fedora = " "
+# FreeBSD = " "
+# Garuda = "󰛓 "
+# Gentoo = " "
+# HardenedBSD = "󰞌 "
+# Illumos = "󰈸 "
+# Kali = " "
+# Linux = " "
+# Mabox = " "
+# Macos = " "
+# Manjaro = " "
+# Mariner = " "
+# MidnightBSD = " "
+# Mint = " "
+# NetBSD = " "
+# NixOS = " "
+# OpenBSD = "󰈺 "
+# openSUSE = " "
+# OracleLinux = "󰌷 "
+# Pop = " "
+# Raspbian = " "
+# Redhat = " "
+# RedHatEnterprise = " "
+# RockyLinux = " "
+# Redox = "󰀘 "
+# Solus = "󰠳 "
+# SUSE = " "
+# Ubuntu = " "
+# Unknown = " "
+# Void = " "
+# Windows = "󰍲 "
+
+# [package]
+# symbol = "󰏗 "
+
+# [perl]
+# symbol = " "
+
+# [php]
+# symbol = " "
+
+# [pijul_channel]
+# symbol = " "
+
+# [python]
+# symbol = "🐍 "
+# format = "[${symbol}${pyenv_prefix}(${version} )(\($virtualenv\) )]($style)"	
+# pyenv_version_name = false
+
+
+# [rlang]
+# symbol = "󰟔 "
+
+# [ruby]
+# symbol = " "
+
+# [rust]
+# symbol = " "
+
+# [scala]
+# symbol = " "
+
+# [swift]
+# symbol = " "
+
+# [zig]
+# symbol = " "
