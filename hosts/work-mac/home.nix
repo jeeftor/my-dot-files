@@ -29,6 +29,8 @@
       ripgrep
       mpv
       coreutils
+      element-desktop
+
       # zellij
 
       # fastfetch

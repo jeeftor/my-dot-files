@@ -23,7 +23,7 @@ in
     #   program = "zsh";
     #   args = [ "-l" ];
     # };
-    scrollling = {
+    scrolling = {
       history = 10000;
       multiplier = 3;
     };
@@ -75,8 +75,11 @@ in
     };
 
     cursor = {
-      blinking = "On";
+      style = {
+        blinking = "On";
+      };
     };
+
 
     #https://arslan.io/2018/02/05/gpu-accelerated-terminal-alacritty/#make-alacritty-feel-like-iterm2
   };

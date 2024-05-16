@@ -31,6 +31,24 @@
       url = "github:numtide/flake-utils";
     };
 
+
+    # ---- Nix Homebrew Stuff ----
+    # https://github.com/zhaofengli/nix-homebrew
+    nix-homebrew.url = "github:zhaofengli-wip/nix-homebrew";
+
+    # Optional: Declarative tap management
+    homebrew-core = {
+      url = "github:homebrew/homebrew-core";
+      flake = false;
+    };
+    homebrew-cask = {
+      url = "github:homebrew/homebrew-cask";
+      flake = false;
+    };
+    #--------------------------------------
+
+
+
     # this is a quick util a good GitHub samaritan wrote to solve for
     # https://github.com/nix-community/home-manager/issues/1341#issuecomment-1791545015
     mac-app-util = {
@@ -40,7 +58,19 @@
 
   # https://stackoverflow.com/questions/77585228/how-to-allow-unfree-packages-in-nix-for-each-situation-nixos-nix-nix-wit
 
-  outputs = { self, nixpkgs, darwin, home-manager, nix-darwin, ragenix, utils, mac-app-util, ... } @ inputs:
+  outputs =
+    { self
+    , nixpkgs
+    , darwin
+    , home-manager
+    , ragenix
+    , utils
+    , mac-app-util
+    , nix-homebrew
+    , homebrew-core
+    , homebrew-cask
+    , ...
+    } @ inputs:
     let
       # Import Work Certs
       certificates = import ./certificates.nix;
@@ -70,7 +100,7 @@
           pkgs.neofetch
 
           # If this line is uncommented i get a big error
-          #pkgs.fastfetch
+          pkgs.fastfetch
         ];
 
         # Auto upgrade nix package and the daemon service.
@@ -82,7 +112,6 @@
           # https://github.com/LnL7/nix-darwin/issues/740#issuecomment-1984439237 - to fix nix-shell -p
           extra-nix-path = "nixpkgs=flake:nixpkgs";
 
-          # extra-nix-path = "nixpkgs-flake:nixpkgs";
           trusted-users = [
             "root"
             "jstein"
@@ -128,8 +157,8 @@
         imac = nixpkgs.lib.nixosSystem {
           system = "x86_64-linux";
           modules = [
-            ragenix.nixosModules.default
 
+            ragenix.nixosModules.default
             {
               imports = [
                 ./hosts/imac/configuration.nix
@@ -157,13 +186,31 @@
 
       # ------ (Work) Darwin Config ---------------
       darwinConfigurations = {
-        work-mac = nix-darwin.lib.darwinSystem {
+        work-mac = darwin.lib.darwinSystem {
 
           # This is something good usually
 
 
           system = "aarch64-darwin";
           modules = [
+
+            # OSX Specific
+            ./modules/osx/system.nix
+
+            # Configure HomeBrew
+            nix-homebrew.darwinModules.nix-homebrew
+            {
+              imports = [
+                (import ./modules/homebrew.nix {
+                  # Pass in homebrew cask/core
+                  inherit homebrew-cask homebrew-core;
+                }
+                )
+              ];
+
+            }
+
+
             mac-app-util.darwinModules.default
 
             work_nix_config

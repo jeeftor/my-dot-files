@@ -109,8 +109,9 @@ in
       # tree = true;
       # hyperlink = "always";
       #date = "+%Y-%m-%d %r";
+      size = "short";
       date = "+%D %R";
-      ignore-globs = [ ".git" ".hg" "Libraryss" ];
+      ignore-globs = [ ".git" ".hg" "Library" ];
     };
   };
 
