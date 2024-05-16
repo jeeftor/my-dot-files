@@ -45,6 +45,11 @@
       url = "github:homebrew/homebrew-cask";
       flake = false;
     };
+    # https://github.com/zhaofengli/nix-homebrew/issues/9#issuecomment-1774684583
+    homebrew-bundle = {
+      url = "github:homebrew/homebrew-bundle";
+      flake = false;
+    };
     #--------------------------------------
 
 
@@ -69,6 +74,7 @@
     , nix-homebrew
     , homebrew-core
     , homebrew-cask
+    , homebrew-bundle
     , ...
     } @ inputs:
     let
@@ -203,7 +209,7 @@
               imports = [
                 (import ./modules/homebrew.nix {
                   # Pass in homebrew cask/core
-                  inherit homebrew-cask homebrew-core;
+                  inherit homebrew-cask homebrew-core homebrew-bundle;
                 }
                 )
               ];
