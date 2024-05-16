@@ -11,10 +11,16 @@
 {
   homebrew = {
     enable = true;
+    masApps = {
+      "Pixelmator Pro" = 1289583905;
+      "Yubico Authenticator" = 1497506650;
+      "Vinegar - Tube Cleaner" = 1591303229;
+    };
     casks = [
       "alfred"
       "elgato-stream-deck"
       "bettertouchtool"
+      "macdown"
     ];
   };
   system = {
